@@ -23,6 +23,10 @@ namespace _1TDL_Web.Controllers
 
             //return View(db.ToDoList.ToList().Where(x => x.User == currentUser));                  //Only returns view of ToDo items associated with current User logged on
 
+            //var toDo = from x in db.ToDoList select x;
+            //toDo = toDo.OrderBy(x => x.Due);
+
+            //return View(toDo.ToList());
             return View();
         }
 
@@ -47,7 +51,6 @@ namespace _1TDL_Web.Controllers
 
         public ActionResult BuildToDoTable()
         {
-
             return PartialView("_ToDoTable", GetMyToDoList());                  //Returns a partial view of ToDo items associated with current User logged on
         }
 
