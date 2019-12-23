@@ -102,7 +102,7 @@ namespace _1TDL_Web.Controllers
                 ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);    //Query in database for the User currently creating the ToDo item
                 toDo.User = currentUser;
                 toDo.Completed = false;
-                toDo.Due = DateTime.Now;
+                //toDo.Due = DateTime.Now;
 
                 db.ToDoList.Add(toDo);
                 db.SaveChanges();
@@ -169,6 +169,7 @@ namespace _1TDL_Web.Controllers
             else
             {
                 toDo.Completed = value;
+                
                 db.Entry(toDo).State = EntityState.Modified;
                 db.SaveChanges();
 

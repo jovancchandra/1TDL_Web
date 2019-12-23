@@ -6,14 +6,12 @@
 
 
 <h3>To-Do List</h3>
-<!--
-<p>
-    @Html.ActionLink("Add Task", "Create")
-</p>
--->
 
 <div id="tableDiv"></div>
+
 <div id="tableCreateForm">
+    @Html.ActionLink("Add Task", "Create")
+
     @using (Ajax.BeginForm("AJAXCreate", "ToDoList", new AjaxOptions
     {
         InsertionMode = InsertionMode.Replace,
@@ -33,7 +31,8 @@
     }
     <!--{
         <div class="form-group">
-            @Html.LabelFor(model => model.Due, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.AntiForgeryToken()
+
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Due, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Due, "", new { @class = "text-danger" })
