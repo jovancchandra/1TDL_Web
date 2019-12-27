@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security;
 using System.Web;
 using System.Web.Mvc;
 using _1TDL_Web.Models;
@@ -102,7 +103,8 @@ namespace _1TDL_Web.Controllers
                 ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);    //Query in database for the User currently creating the ToDo item
                 toDo.User = currentUser;
                 toDo.Completed = false;
-                toDo.Due = DateTime.Now;
+                TimeZoneInfo pst = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+                toDo.Due = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, pst);
 
                 db.ToDoList.Add(toDo);
                 db.SaveChanges();
